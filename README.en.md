@@ -121,6 +121,22 @@ The project has required work around:
 
 See [Engineering Challenges](docs/en/engineering-challenges.md).
 
+## My role in the project
+
+I define the problem, organize requirements and priorities, guide the project's evolution, and assess results. Generative AI is used extensively to support code production, documentation, and testing.
+
+My work includes guiding implementation, evaluating proposed solutions, following validation, and continuing to strengthen my Python and backend engineering skills. AI-assisted implementation should not be confused with writing every line of code manually.
+
+## Evidence and development stage
+
+**In development:** personal Python/Django platform with modular architecture, relational persistence, and asynchronous processing described in the technical documentation.
+
+**Engineering goals and principles:** traceability, explicit uncertainty, incremental processing, human review, and test-driven evolution.
+
+**Not demonstrated in this showcase:** public availability of the operational product, production usage results, performance metrics, or demos using real data. A described workflow should not be interpreted as proof that every step is fully implemented.
+
+![Conceptual, non-executable architecture diagram](assets/architecture-overview.svg)
+
 ## Project status
 
 SeuLeilão is under active development as a personal project and is being evolved toward an operational product.

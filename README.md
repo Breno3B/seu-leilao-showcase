@@ -79,6 +79,22 @@ O projeto explora fontes heterogêneas, documentos, processamento assíncrono, h
 
 Leia [Desafios de engenharia](docs/pt/engineering-challenges.md).
 
+## Meu papel no projeto
+
+Sou responsável por definir o problema, organizar requisitos e prioridades, conduzir a evolução do projeto e avaliar resultados. O desenvolvimento utiliza IA generativa de maneira intensiva para apoiar a produção de código, documentação e testes.
+
+Meu trabalho inclui orientar implementações, avaliar propostas, acompanhar validações e continuar aprofundando meus conhecimentos em Python e engenharia backend. O uso de IA não representa autoria manual integral do código.
+
+## Evidências e estágio
+
+**Em desenvolvimento:** plataforma pessoal baseada em Python/Django, com arquitetura modular, persistência relacional e processamento assíncrono descritos na documentação.
+
+**Princípios e objetivos do projeto:** rastreabilidade, tratamento explícito de incertezas, processamento incremental, revisão humana e evolução guiada por testes.
+
+**Ainda não apresentados neste showcase:** disponibilidade pública do produto, resultados de uso em produção, métricas de desempenho e demonstrações com dados reais. A descrição de um fluxo não deve ser interpretada como garantia de que todas as suas etapas estejam concluídas.
+
+![Diagrama conceitual e não executável da arquitetura](assets/architecture-overview.svg)
+
 ## Estado atual
 
 Projeto pessoal em desenvolvimento contínuo, com evolução planejada para uma solução operacional. O showcase será atualizado conforme existirem marcos adequados à apresentação pública.
