@@ -1,131 +1,88 @@
 # SeuLeilão
 
-**Python/Django platform for real estate auction analysis, opportunity tracking, data processing, and decision support.**
+🇧🇷 **Português** | [🇺🇸 English](README.en.md)
 
-SeuLeilão is a personal software project focused on organizing the analysis of real estate auction opportunities into a structured, traceable workflow.
+**Plataforma em Python/Django para análise de imóveis em leilão, acompanhamento de oportunidades, processamento de dados e apoio à decisão.**
 
-The project explores how software can support the collection, normalization, validation, enrichment and review of information that is usually fragmented across different sources and documents.
+O **SeuLeilão** é um projeto pessoal de software voltado a organizar a análise de oportunidades de imóveis em leilão em um fluxo estruturado e rastreável.
 
-> This repository is a public technical showcase of the project. It presents the product concept, architecture and engineering practices at a high level.
+O projeto explora como o software pode apoiar a coleta, normalização, validação, enriquecimento e revisão de informações dispersas em diferentes fontes e documentos.
 
-## What the project addresses
+> Este repositório apresenta uma visão técnica pública do projeto. O produto e sua implementação são desenvolvidos separadamente.
 
-Real estate auction analysis often involves combining information from multiple sources, reviewing documents, tracking changes, resolving inconsistencies and comparing opportunities before a decision can be made.
+🌐 **[Conheça a apresentação do projeto](https://breno3b.github.io/seu-leilao-showcase/)**
 
-SeuLeilão is being designed to support this workflow by:
+## Problema abordado
 
-- organizing multiple opportunities in parallel;
-- preserving provenance and history of collected information;
-- separating automated processing from human review;
-- surfacing incomplete, conflicting or outdated information;
-- supporting repeatable analysis instead of one-off manual checks;
-- providing a technical foundation for future decision-support features.
+Analisar imóveis em leilão exige reunir informações de fontes diferentes, revisar documentos, acompanhar alterações, resolver inconsistências e comparar oportunidades.
 
-## Current technology stack
+O SeuLeilão busca apoiar esse trabalho por meio de:
 
-- **Python**
-- **Django**
-- **PostgreSQL**
-- **Celery**
-- **Redis**
-- **Django Templates / htmx**
-- **Docker / Docker Compose**
-- **pytest / pytest-django**
+- organização de múltiplas oportunidades;
+- preservação da origem e do histórico dos dados;
+- separação entre processamento automatizado e revisão humana;
+- identificação de informações incompletas, conflitantes ou desatualizadas;
+- análises reproduzíveis e processos consistentes;
+- uma base técnica para futuras funcionalidades de apoio à decisão.
 
-The current architecture is a **modular monolith with asynchronous workers** for long-running or reprocessable tasks.
+## Tecnologias
 
-## Engineering principles
+**Python · Django · PostgreSQL · Celery · Redis · Django Templates / htmx · Docker / Docker Compose · pytest / pytest-django**
 
-The project is being developed around a few core principles:
+A arquitetura atual combina um **monólito modular** com tarefas assíncronas para trabalhos demorados ou que precisem de reprocessamento.
 
-- **Traceability** — important data should retain origin and history.
-- **Incremental processing** — existing records are enriched instead of unnecessarily rebuilt.
-- **Explicit uncertainty** — missing or conflicting information should remain visible rather than being silently guessed.
-- **Human-in-the-loop** — decisions that require judgment can be routed for review.
-- **Idempotency** — reprocessing should be safe where possible.
-- **Testability** — business behavior and processing flows are covered by automated tests.
-- **Modularity** — domain boundaries remain explicit even inside a monolithic deployment.
+## Princípios de engenharia
 
-## High-level architecture
+- **Rastreabilidade:** preservar origem e histórico de informações importantes.
+- **Processamento incremental:** enriquecer registros existentes sem refazer etapas desnecessárias.
+- **Incerteza explícita:** não presumir respostas diante de dados ausentes ou conflitantes.
+- **Revisão humana:** encaminhar decisões que exigem julgamento.
+- **Idempotência:** permitir reprocessamentos seguros sempre que possível.
+- **Testabilidade:** proteger comportamentos por meio de testes automatizados.
+- **Modularidade:** manter limites claros entre responsabilidades.
+
+## Arquitetura em alto nível
 
 ```mermaid
 flowchart LR
-    S[External data and documents] --> I[Ingestion]
-    I --> N[Normalization and validation]
+    S[Fontes e documentos] --> I[Coleta]
+    I --> N[Normalização e validação]
     N --> DB[(PostgreSQL)]
-
-    N --> Q[Async processing]
-    Q --> W[Celery workers]
+    N --> Q[Processamento assíncrono]
+    Q --> W[Workers Celery]
     W --> DB
-
-    DB --> A[Django application]
-    A --> H[Human review]
-    A --> O[Opportunity views]
+    DB --> A[Aplicação Django]
+    A --> H[Revisão humana]
+    A --> O[Visualização de oportunidades]
 ```
 
-The application keeps the transactional core in Django/PostgreSQL while asynchronous work is delegated to Celery workers through Redis.
+Saiba mais em [Visão geral da arquitetura](docs/pt/architecture-overview.md).
 
-More detail is available in [Architecture Overview](docs/architecture-overview.md).
-
-## Development approach
-
-The project follows an iterative path from domain understanding to implementation:
+## Abordagem de desenvolvimento
 
 ```text
-Problem
-  → process
-  → domain
-  → data
-  → rules
-  → requirements
-  → architecture
-  → implementation
-  → tests
-  → validation
+Problema → processo → domínio → dados → regras
+→ requisitos → arquitetura → implementação → testes → validação
 ```
 
-Architecture decisions are documented internally with ADRs, and the project evolves through small vertical slices that can be validated before broader expansion.
+O projeto utiliza decisões arquiteturais documentadas internamente e evolui de maneira iterativa.
 
-## AI-assisted development
+## Desenvolvimento assistido por IA
 
-Generative AI is used as a development tool for activities such as:
+A IA generativa apoia a definição de requisitos, a exploração de alternativas, a geração e refatoração de código, a documentação e a criação e revisão de testes. As propostas geradas precisam ser analisadas e validadas.
 
-- refining requirements;
-- exploring implementation alternatives;
-- generating and refactoring code;
-- improving documentation;
-- proposing tests;
-- reviewing technical solutions.
+Leia [Desenvolvimento assistido por IA](docs/pt/ai-assisted-development.md).
 
-Generated output is treated as material to be reviewed and validated, not as an authoritative source of truth.
+## Desafios de engenharia
 
-See [AI-assisted Development](docs/ai-assisted-development.md).
+O projeto explora fontes heterogêneas, documentos, processamento assíncrono, histórico dos dados, informações conflitantes, reprocessamento e revisão humana.
 
-## Engineering challenges explored
+Leia [Desafios de engenharia](docs/pt/engineering-challenges.md).
 
-The project has required work around:
+## Estado atual
 
-- heterogeneous and changing data sources;
-- document acquisition and processing;
-- asynchronous workflows;
-- provenance and versioning;
-- incomplete and conflicting data;
-- retryable processing;
-- human review queues;
-- deterministic rules alongside AI-assisted processing;
-- keeping product and engineering decisions auditable.
+Projeto pessoal em desenvolvimento contínuo, com evolução planejada para uma solução operacional. O showcase será atualizado conforme existirem marcos adequados à apresentação pública.
 
-See [Engineering Challenges](docs/engineering-challenges.md).
+## Autor
 
-## Project status
-
-SeuLeilão is under active development as a personal project and is being evolved toward an operational product.
-
-The public showcase will be updated as the project reaches milestones that can be presented without exposing implementation-specific or product-sensitive details.
-
-## Author
-
-**Breno Rodrigues Magalhães**
-
-- [GitHub](https://github.com/Breno3B)
-- [LinkedIn](https://www.linkedin.com/in/brenorm/)
+**Breno Rodrigues Magalhães** · [GitHub](https://github.com/Breno3B) · [LinkedIn](https://www.linkedin.com/in/brenorm/)
